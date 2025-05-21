@@ -1,35 +1,58 @@
 using System;
 using System.Numerics;
+using System.Collections.Generic;
 
 namespace Hashing
 {
     public static class HashingFunctions
     {
-        private static Random rndShift = new Random();
-        private static Random rndModPrime = new Random();
-        public static BigInteger modulo(BigInteger x, BigInteger p, int q) {
+        public static BigInteger modulo(BigInteger x, BigInteger p, int q)
+        {
             BigInteger y = (x & p) + (x >> q);
             if (y >= p) y -= p;
             return y;
         }
 
-        public static ulong multiplyShift(BigInteger x)
+        public static ulong multiplyShift(ulong x, ulong a, int l)
         {
-            int l = rndShift.Next(64);
-            ulong a = 0xf784b8c1be342f9f;                // From random bit generator
-            return (ulong)((a * x) >> (64 - l));
+            return (a * x) >> (64 - l);
         }
 
-        public static BigInteger multiplyModPrime(BigInteger x)
+        public static BigInteger multiplyModPrime(ulong x, BigInteger a, BigInteger b, int l, BigInteger p)
         {
-            BigInteger p = BigInteger.Pow(2, 89) - 1;
-            int l = rndModPrime.Next(64);
-            BigInteger a = BigInteger.Parse("F5A9CA34582AA4B080FBEA", System.Globalization.NumberStyles.HexNumber);
-            BigInteger b = BigInteger.Parse("152FC6CDC1964D16E909972", System.Globalization.NumberStyles.HexNumber);      // From random bit generator
+            BigInteger axb = (x * a) + b;
+            return ((modulo(axb, p, 89)) % BigInteger.Pow(2, l));
+        }
+        public static IEnumerable<Tuple<ulong, int>> CreateStream(int n, int l)
+        {
+            // We generate a random uint64 number.
+            Random rnd = new System.Random();
+            ulong a = 0UL;
+            Byte[] b = new Byte[8];
+            rnd.NextBytes(b);
+            for (int i = 0; i < 8; ++i)
+            {                                   // We demand that our random number has 30 zeros on the least
+                a = (a << 8) + (ulong)b[i];     // significant bits and then a one.
+            }
 
-            x *= a;
-            x += b;
-            return ((modulo(x, p, 89)) % BigInteger.Pow(2, l));
+            a = (a | ((1UL << 31) - 1UL)) ^ ((1UL << 30) - 1UL);
+
+            ulong x = 0UL;
+            for (int i = 0; i < n / 3; ++i)
+            {
+                x = x + a;
+                yield return Tuple.Create(x & (((1UL << l) - 1UL) << 30), 1);
+            }
+            for (int i = 0; i < (n + 1) / 3; ++i)
+            {
+                x = x + a;
+                yield return Tuple.Create(x & (((1UL << l) - 1UL) << 30), -1);
+            }
+            for (int i = 0; i < (n + 2) / 3; ++i)
+            {
+                x = x + a;
+                yield return Tuple.Create(x & (((1UL << l) - 1UL) << 30), 1);
+            }
         }
     }
 }
