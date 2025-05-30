@@ -5,7 +5,7 @@ namespace Hashing
     {
         public static uint SumOfSquares(HashingTable hashingTable)
         {
-            IEnumerable<Tuple<ulong, int>> stream = Stream.CreateStream((int)Math.Pow(2, Implentation.l + 1), Implentation.l);
+            IEnumerable<Tuple<ulong, int>> stream = Stream.CreateStream((int)Math.Pow(2, 27), Implentation.l);
             uint sum = 0;
             foreach ((ulong key, int value) in stream)
             {
