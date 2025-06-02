@@ -69,17 +69,19 @@ namespace Hashing
         {
             foreach ((ulong key, int value) in stream)
             {
+                uint index = (uint)hashFunc(key);
                 bool found = false;
-                for (int i = 0; i < table[key].Count; i++)
+
+                for (int i = 0; i < table[index].Count; i++)
                 {
-                    if (table[(uint)hashFunc(key)][i].Item1 == key)
+                    if (table[index][i].Item1 == key)
                     {
                         Increment(key, value);
                         found = true;
                         break;
                     }
-                    i++;
                 }
+
                 if (!found)
                 {
                     Set(key, value);

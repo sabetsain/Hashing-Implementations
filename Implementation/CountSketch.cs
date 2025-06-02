@@ -69,12 +69,12 @@ namespace Hashing
     // Opgave 6
     public class CountSketch
     {
-        int[] counters;
+        long[] counters;
         CountSketchHash hash;
 
         public CountSketch(int l, Func<ulong, BigInteger> g) {
             int k = 1 << l;
-            counters = new int[k];
+            counters = new long[k];
             hash = new CountSketchHash(l, g);
         }
 
@@ -88,7 +88,7 @@ namespace Hashing
 
         public ulong EstimateSecondMoment() {
             ulong estimate = 0;
-            foreach (int c in counters)
+            foreach (long c in counters)
             {
                 estimate += (ulong)(c * c);
             }
