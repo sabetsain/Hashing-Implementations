@@ -1,0 +1,14 @@
+/Users/sebastianmcconnell/Desktop/test/bin/Debug/net9.0/ImplementationProject
+/Users/sebastianmcconnell/Desktop/test/bin/Debug/net9.0/ImplementationProject.deps.json
+/Users/sebastianmcconnell/Desktop/test/bin/Debug/net9.0/ImplementationProject.runtimeconfig.json
+/Users/sebastianmcconnell/Desktop/test/bin/Debug/net9.0/ImplementationProject.dll
+/Users/sebastianmcconnell/Desktop/test/bin/Debug/net9.0/ImplementationProject.pdb
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ImplementationProject.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ImplementationProject.AssemblyInfoInputs.cache
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ImplementationProject.AssemblyInfo.cs
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ImplementationProject.csproj.CoreCompileInputs.cache
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ImplementationProject.dll
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/refint/ImplementationProject.dll
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ImplementationProject.pdb
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ImplementationProject.genruntimeconfig.cache
+/Users/sebastianmcconnell/Desktop/test/obj/Debug/net9.0/ref/ImplementationProject.dll
