@@ -1,5 +1,10 @@
 For at kunne køre vores program, skal man ind på 'ImplementationProject' filen.
 
+For at gøre det, skrive det følgende ind på terminalen: 
+```
+cd ImplementationProject
+```
+
 Så kan man køre:
 ```
 dotnet run
